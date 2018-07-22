@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -27,6 +28,12 @@ dependencies {
     // support
     implementation "com.android.support:appcompat-v7:$supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    // dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // testing
     testImplementation 'junit:junit:4.12'
