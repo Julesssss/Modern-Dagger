@@ -1,19 +1,26 @@
 package com.github.julesssss.moderndagger
 
-import android.app.Application
+import com.github.julesssss.moderndagger.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import javax.inject.Inject
 
 /**
  * Custom Application class. In our case only used to track the app onCreate() lifecycle event.
  */
-class ModernDaggerApplication : Application() {
+class ModernDaggerApplication : DaggerApplication() {
 
-    private val analyticsHelper by lazy { AnalyticsHelper() }
+    @Inject lateinit var analyticsHelper: AnalyticsHelper
 
     override fun onCreate() {
         super.onCreate()
 
         // simulate analytics tracking
         analyticsHelper.simulatePageTracking("Application-onCreate")
+    }
+
+    override fun applicationInjector(): AndroidInjector<ModernDaggerApplication> {
+        return DaggerAppComponent.builder().create(this)
     }
 
 }

@@ -1,18 +1,19 @@
 package com.github.julesssss.moderndagger.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.github.julesssss.moderndagger.AnalyticsHelper
 import com.github.julesssss.moderndagger.R
+import dagger.android.DaggerActivity
+import javax.inject.Inject
 
 /**
  * MainActivity is the single Activity in this project. It uses the MVVM pattern to retrieve data in
  * a single direction from the ViewModel.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerActivity() {
 
     private val viewModel by lazy { MainViewModel() }
-    private val analyticsHelper by lazy { AnalyticsHelper() }
+    @Inject lateinit var analyticsHelper: AnalyticsHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
